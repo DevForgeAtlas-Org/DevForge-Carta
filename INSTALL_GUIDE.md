@@ -22,7 +22,7 @@
 
 ## Option 0: Let Claude Install It (Easiest)
 
-**What you get:** Full plugin install — 87 commands, global brain, persistent across all sessions.
+**What you get:** Full plugin install — 91 commands, global brain, persistent across all sessions.
 No commands to memorize. No docs to read. Claude handles everything.
 
 ### Prerequisites
@@ -48,13 +48,13 @@ Claude guides you through `//admin` (brain setup, SSH, remote sync) then `//scaf
 
 ### That's it
 
-Every future session — terminal or desktop app — type `//quick-reference` to see all 87 commands. The plugin loads automatically, forever.
+Every future session — terminal or desktop app — type `//quick-reference` to see all 91 commands. The plugin loads automatically, forever.
 
 ---
 
 ## Option 1: Claude Code Plugin (Primary — Manual Install)
 
-**What you get:** All 87 commands, global brain, cross-project learning, git hooks, GitHub sync.
+**What you get:** All 91 commands, global brain, cross-project learning, git hooks, GitHub sync.
 Works in Claude Code terminal and Claude Code desktop app.
 
 ### Prerequisites
@@ -134,7 +134,7 @@ code --install-extension devforge-*.vsix
 
 ## Option 3: Standalone — Full (Any Machine, No Install)
 
-**What you get:** All 87 commands as text instructions. Full architecture rules. All 11 docs.
+**What you get:** All 91 commands as text instructions. Full architecture rules. All 11 docs.
 Uses context window tokens (no compiled intelligence). Works anywhere.
 
 ```bash
