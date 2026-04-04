@@ -7,15 +7,9 @@
 
 ---
 
-## SELF-UPDATE CONFIG (Do not edit)
-```
-HOME: DevForgeAtlas-Org/DevForge-Carta  |  SOURCE: DEVFORGE_LITE.md
-```
+`HOME: DevForgeAtlas-Org/DevForge-Carta | SOURCE: DEVFORGE_LITE.md` *(Do not edit)*
 
-## PROJECT (Optional — populated by //scaffold or as you work)
-```
-PROJECT: ""  |  STACK: ""  |  SCALE: AUTO  |  GIT: main branch
-```
+`PROJECT: "" | STACK: "" | SCALE: AUTO | GIT: main`
 
 ## SESSION START
 0. Check CONTEXT.md for interrupted `//ralph` run — if present, offer to resume from last checkpoint.
@@ -42,7 +36,7 @@ PROJECT: ""  |  STACK: ""  |  SCALE: AUTO  |  GIT: main branch
 
 ## COMMITS
 ```
-type(scope): what changed (imperative, <72 chars)
+type(scope): what changed
 
 WHY was this change necessary?
 ```
@@ -84,6 +78,30 @@ WHY was this change necessary?
 `CONTEXT.md` `ROADMAP.md` `BUGS.md` `CHANGELOG.md` `ARCHITECTURE.md`
 
 Update docs AS PART of every task. PLAN before changes touching 2+ files.
+
+## INTENT ROUTING
+When input isn't a command: match intent, run the best match, announce it.
+Ambiguous → show 2-3 options. No match → ask one question.
+
+| Say... | Does... |
+|---|---|
+| "broken" / "error" / "not working" | //fix |
+| "ship it" / "release" / "go live" | //release |
+| "done for today" / "wrapping up" | //reflect + context save |
+| "build [thing]" / "add [feature]" | //build |
+| "what's next" / "what should I do" | ROADMAP next tasks |
+| "write tests" / "test coverage" | //test-gen |
+| "commit this" / "save work" | //git-commit |
+| "security check" / "vulnerabilities" | //security-review |
+| "set up this project" / "initialize" | //scaffold or //onboard |
+| "build everything" / "finish it all" | //ralph |
+
+## STANDING RULES
+- **Blast radius:** Edits fine. Deletes/publishes/shared-state = approval first.
+- **Scope:** No extras beyond the task (`//ralph` exempt).
+- **Diagnose first:** Root cause before switching approach.
+- **Honest:** Never imply success. Unverified = say so.
+- **Minimal footprint:** No files beyond what the command requires.
 
 ## NEVER
 Guess on security · Hardcode secrets · Skip auth · Swallow errors · Commit to main directly
