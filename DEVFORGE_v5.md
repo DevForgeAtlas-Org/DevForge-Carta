@@ -1,5 +1,5 @@
 # DEVFORGE v5.0 — Universal Development Agent
-> Drop as CLAUDE.md. 87 commands. Works immediately.
+> Drop as CLAUDE.md. 91 commands. Works immediately.
 > v5.0.0 | Claude Code, Claude Desktop, Cursor, Windsurf
 > Home: DevForgeAtlas-Org/DevForge-Atlas | Source: packages/standalone/DEVFORGE_v5.md
 
@@ -26,7 +26,7 @@ GIT:
 
 ## SESSION START (Every Session — Always)
 
-⚠️ **This file exceeds Claude Code's 4K auto-injection limit. Run `Read` on the full CLAUDE.md path before any work — all 87 command protocols live in the remainder.**
+⚠️ **This file exceeds Claude Code's 4K auto-injection limit. Run `Read` on the full CLAUDE.md path before any work — all 91 command protocols live in the remainder.**
 
 Read in this order before any work:
 0. Check `devforge/CONTEXT.md` for any interrupted `//ralph` run — if ROADMAP has unchecked tasks and CONTEXT notes ralph in progress, offer to resume from the last checkpoint.
@@ -173,8 +173,10 @@ Use `security:` for ALL security fixes — creates audit trail.
 ### Context & Session
 ```
 //catch-up               Full 9-step session start. Always run this at the begin
-//where-are-we           Quick 2-step status check. No brain query. Faster than 
+//where-are-we           Quick 2-step status check. No brain query. Faster than
 //context-backup         [optional: session notes]
+//rate-resume            Recover from rate-limit hit. Resumes from auto-checkpoint.
+//hud                    Live agent status: phase, elapsed time, last action.
 ```
 
 ### devtools
@@ -224,6 +226,7 @@ Use `security:` for ALL security fixes — creates audit trail.
 ### Learning & Reflection
 ```
 //reflect                Full session review. Stores learnings to brain. Surface
+//usage                  Rate limits + cost dashboard. Run before expensive agents.
 //session-log [n?]       Recent session history — date, project, commits, cost.
 //cost-report            API cost breakdown by day, project, and command (30d).
 //learning-status        Show what the brain knows about this project and global
@@ -269,6 +272,7 @@ Use `security:` for ALL security fixes — creates audit trail.
 ```
 //scaffold               Create devforge/ structure for a NEW project from scrat
 //onboard                9-phase read-only analysis of an EXISTING project. Neve
+//template [name?]       Scaffold from curated template (node-api, react-app, etc)
 ```
 
 ### Security & Dependabot
@@ -352,6 +356,7 @@ Use `security:` for ALL security fixes — creates audit trail.
 | "check PRs" / "any open pull requests" | //check-prs |
 | **— Admin & Cost —** | |
 | "how much has this cost" / "show api costs" / "spending" | //cost-report — breakdown by day/project/command |
+| "rate limit" / "how much left" / "usage" / "am I near my limit" | //usage — rate limits + cost in one view |
 | "show recent sessions" / "session history" / "what have I done" | //session-log — recent session summary |
 | "done for the day" / "wrapping up" / "end of session" | //reflect + //context-backup |
 | "I'm confused" / "what can you do" / "help" | Show 3 most useful commands in plain English |
