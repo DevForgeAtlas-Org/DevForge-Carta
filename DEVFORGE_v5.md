@@ -1,40 +1,32 @@
 # DEVFORGE v5.0 — Universal Development Agent
-> Drop this file into any project as CLAUDE.md. Works immediately.
-> Full version: all 87 commands, all 11 docs, complete architecture system.
-> Version: 5.0.0 | Compatible: Claude Code, Claude Desktop, Cursor, Windsurf
-> Generated: 2026-03-29
-> Home: DevForgeAtlas-Org/DevForge-Atlas
-> Source: packages/standalone/DEVFORGE_v5.md
-> Update: run //update-standalone to pull latest version (identity block preserved)
+> Drop as CLAUDE.md. 87 commands. Works immediately.
+> v5.0.0 | Claude Code, Claude Desktop, Cursor, Windsurf
+> Home: DevForgeAtlas-Org/DevForge-Atlas | Source: packages/standalone/DEVFORGE_v5.md
 
 ---
 
-## SELF-UPDATE CONFIG (Do not edit)
+## SELF-UPDATE (Do not edit)
+`HOME: DevForgeAtlas-Org/DevForge-Carta | SOURCE: DEVFORGE_v5.md | VERSION: 5.0.0`
 
-```yaml
-DEVFORGE_HOME: "DevForgeAtlas-Org/DevForge-Atlas"
-DEVFORGE_SOURCE: "packages/standalone/DEVFORGE_v5.md"
-DEVFORGE_VERSION: "5.0.0"
-```
-
-## PROJECT IDENTITY (Optional — filled in by //scaffold or //onboard as you work)
+## PROJECT IDENTITY (Optional — auto-filled by //scaffold or //onboard)
 
 ```yaml
 PROJECT_NAME: ""
 DESCRIPTION: ""
 MAINTAINER: ""
-PROJECT_SCALE: "AUTO"     # FULL / STANDARD / LITE / AUTO — detected by //scaffold
-TECH_STACK: {}            # Populated by //scaffold or //onboard
+PROJECT_SCALE: "AUTO"    # FULL / STANDARD / LITE / AUTO
+TECH_STACK: {}
 GIT:
   default_branch: "main"
   commit_convention: "conventional"
+  repoStrategy: "auto"   # branch | dual-repo | auto
 ```
-
-> You don't need to fill this in manually. Run `//scaffold` (new project) or `//onboard` (existing project) and it gets populated automatically. Or fill in what you know — the rest gets detected.
 
 ---
 
 ## SESSION START (Every Session — Always)
+
+⚠️ **This file exceeds Claude Code's 4K auto-injection limit. Run `Read` on the full CLAUDE.md path before any work — all 87 command protocols live in the remainder.**
 
 Read in this order before any work:
 0. Check `devforge/CONTEXT.md` for any interrupted `//ralph` run — if ROADMAP has unchecked tasks and CONTEXT notes ralph in progress, offer to resume from the last checkpoint.
@@ -50,6 +42,16 @@ Read in this order before any work:
 10. Check CONTEXT.md for `evolve_last_run` — if 30+ sessions since last `//evolve`, suggest running it.
 
 **Never re-propose an approach recorded as rejected in DECISIONS.md.**
+
+---
+
+## STANDING RULES
+
+- **Blast radius:** Consider reversibility before acting. Edits = fine. Deletes / publishes / shared-state changes = explicit approval first.
+- **Scope discipline:** No extra abstractions, shims, or cleanup beyond the current task. (`//forge` + `//ralph` are exempt — they're intentionally expansive.)
+- **Diagnose before pivoting:** Find root cause before switching approaches. Don't thrash strategies.
+- **Honest reporting:** Never imply success. If a test wasn't run or verification is uncertain, say so explicitly.
+- **Minimal footprint:** Don't create files beyond what the active command requires.
 
 ---
 
@@ -309,29 +311,50 @@ Use `security:` for ALL security fixes — creates audit trail.
 
 ## NATURAL LANGUAGE TRIGGERS
 
+**Intent Router:** When input isn't a `//command`, match against this table. Unambiguous → run it immediately and announce. Ambiguous → show 2–3 best matches and ask. Never dump the full command list.
+
 | When I say... | DevForge does... |
 |---|---|
-| "what's broken" / "show bugs" | BUGS.md Critical + High summary |
-| "where are we" / "catch me up" | //catch-up |
-| "what's next" / "next task" | ROADMAP.md next 3 unchecked tasks |
-| "tech debt" / "what needs cleanup" | RISKS.md Tech Debt Register |
-| "blockers" / "what's blocked" | RISKS.md Blockers section |
-| "show endpoints" / "api surface" | API_REFERENCE.md summary |
-| "where did we leave off" | CONTEXT.md current state |
-| "configure dependabot" | //dependabot |
-| "security issues" / "CVEs" | //get-bugs with security filter |
-| "commit this" / "save work" | //git-commit |
-| "what did we decide" | DECISIONS.md |
-| "check PRs" | //check-prs |
-| "how are tests" | //qa-status |
-| "what's the risk" | RISKS.md full view |
-| "build everything" / "finish the roadmap" | //ralph — persistent autonomous build loop |
-| "release this" / "ship version" | //release — bump, changelog, tag, GitHub release |
+| **— Session & Status —** | |
+| "where are we" / "catch me up" / "what's going on" | //catch-up |
+| "what's next" / "next task" / "what should I work on" | ROADMAP.md next 3 unchecked tasks |
+| "where did we leave off" / "remind me where we were" | CONTEXT.md current state |
+| "show me the plan" / "what's the roadmap" | ROADMAP.md full phase view |
+| **— Bugs & Problems —** | |
+| "what's broken" / "show bugs" / "what's failing" | BUGS.md Critical + High summary |
+| "something's not working" / "there's an error" / "fix this" | //fix |
+| "it's broken" / "broken build" / "help it's crashing" | //fix |
+| **— Building —** | |
+| "build everything" / "finish the roadmap" / "just do it all" | //ralph — persistent autonomous build loop |
+| "build [feature]" / "add [feature]" / "implement [thing]" | //build [feature] |
+| "new feature" / "I need to add something" | //new-feature |
+| **— Shipping & Git —** | |
+| "release this" / "ship it" / "ship version" / "go live" | //release — bump, changelog, tag, GitHub release |
+| "commit this" / "save work" / "check in my changes" | //git-commit |
+| "push this" / "push to GitHub" | //git-push |
+| "what's changed" / "what did I do" / "git status" | //git-status |
+| **— Quality & Security —** | |
+| "how are tests" / "test coverage" / "are tests passing" | //qa-status |
+| "write tests" / "add tests" / "generate tests" | //test-gen |
+| "security audit" / "scan for vulnerabilities" / "is this safe" | //security-review — OWASP + STRIDE analysis |
+| "security issues" / "CVEs" / "any vulnerabilities" | //get-bugs with security filter |
+| "run visual tests" / "visual regression" / "check screenshots" | //visual-qa — screenshot + diff against baseline |
+| **— Planning & Docs —** | |
+| "what did we decide" / "why did we choose" | DECISIONS.md |
+| "show endpoints" / "api surface" / "what are my APIs" | API_REFERENCE.md summary |
+| "tech debt" / "what needs cleanup" / "what's messy" | RISKS.md Tech Debt Register |
+| "blockers" / "what's blocked" / "anything in the way" | RISKS.md Blockers section |
+| "what's the risk" / "what could go wrong" | RISKS.md full view |
+| **— Setup & Project —** | |
+| "set up this project" / "initialize devforge" / "let's get started" | //scaffold (new) or //onboard (existing) |
 | "new project from template" / "start from template" | //template — list and clone starter |
-| "run visual tests" / "visual regression" | //visual-qa — screenshot + diff against baseline |
-| "security audit" / "scan for vulnerabilities" | //security-review — OWASP + STRIDE analysis |
-| "how much has this cost" / "show api costs" | //cost-report — breakdown by day/project/command |
-| "show recent sessions" / "session history" | //session-log — recent session summary |
+| "configure dependabot" / "set up security updates" | //dependabot |
+| "check PRs" / "any open pull requests" | //check-prs |
+| **— Admin & Cost —** | |
+| "how much has this cost" / "show api costs" / "spending" | //cost-report — breakdown by day/project/command |
+| "show recent sessions" / "session history" / "what have I done" | //session-log — recent session summary |
+| "done for the day" / "wrapping up" / "end of session" | //reflect + //context-backup |
+| "I'm confused" / "what can you do" / "help" | Show 3 most useful commands in plain English |
 
 ---
 
@@ -448,6 +471,30 @@ Requires Playwright. First run = baseline capture. Subsequent runs = diff agains
 
 Output: `devforge/VISUAL_QA/`
 Baseline: `devforge/VISUAL_QA/baseline/` (committed to git, never auto-overwritten)
+
+---
+
+## CLAUDE.local.md (Per-Machine Overrides)
+
+Claude Code supports a `CLAUDE.local.md` file alongside `CLAUDE.md`. It gets its own 4K auto-injection budget and is gitignore-able — ideal for machine-specific config without polluting the repo.
+
+**Add to `.gitignore`:**
+```
+CLAUDE.local.md
+```
+
+**Use it for:**
+- Personal API keys or tokens (never commit these)
+- Local path overrides (`DB_URL: localhost:5432/mydb`)
+- Persona tweaks that are yours alone ("prefer terse responses")
+- Machine-specific tool paths (`PLAYWRIGHT_BROWSERS_PATH: /opt/homebrew/...`)
+
+**Do not put in CLAUDE.local.md:**
+- Command protocols or feature definitions → those belong in CLAUDE.md
+- Team conventions → those belong in CLAUDE.md
+- Anything that should apply to all contributors
+
+DevForge's `//scaffold` and `//onboard` will offer to create a starter `CLAUDE.local.md` with a `[LOCAL CONFIG]` placeholder section.
 
 ---
 
